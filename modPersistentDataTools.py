@@ -13,7 +13,7 @@ import shelve as __shelve
 import csv as __csv
 import os as __os
 import sys as __sys
-__version__ = "2.2.1"
+__version__ = "2.2.2"
 __author__ = "Benjamin P. Trachtenberg"
 __contact__ = "e_ben_75-python@yahoo.com"
 
@@ -49,6 +49,9 @@ dict_to_csv(orig_dict, file_name, field_names_tuple, file_location)
 remove_symbol_add_symbol(string_item, remove_symbol, add_symbol)
 list_files_in_directory(full_directory_path)
 ListOfDirsInDir(strDir)
+
+Functions included in v2.2.2
+get_keys_from_shelve(file_name, file_location)
 
 """
 
@@ -287,6 +290,26 @@ def verify_key_in_shelve(file_name, save_key, file_location):
     exists = shelve_store[save_key]
     shelve_store.close()
     return exists
+
+
+def get_keys_from_shelve(file_name, file_location):
+    """
+    Function to retreive all keys in a shelve
+    Args:
+        file_name: Shelve storage file name
+        file_location: The location of the file, derive from the os module
+
+    Returns:
+        a list of the keys
+
+    """
+    temp_list = list()
+    file = __os.path.join(file_location, file_name)
+    shelve_store = __shelve.open(file)
+    for key in shelve_store:
+        temp_list.append(key)
+    shelve_store.close()
+    return temp_list
 
 
 def remove_spaces(string_item):
