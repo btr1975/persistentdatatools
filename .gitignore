@@ -63,3 +63,6 @@ target/
 
 # No Tilde Ends
 *~
+
+# No JetBrains Files
+.idea/
