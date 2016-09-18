@@ -18,7 +18,7 @@ __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
 __version__ = '2.2.2'
-__version_info__ = tuple([ int(num) for num in __version__.split('.')])
+__version_info__ = tuple([int(num) for num in __version__.split('.')])
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
 __status__ = "Production"
@@ -54,7 +54,6 @@ file_name_increase(file_name, file_location)
 dict_to_csv(orig_dict, file_name, field_names_tuple, file_location)
 remove_symbol_add_symbol(string_item, remove_symbol, add_symbol)
 list_files_in_directory(full_directory_path)
-ListOfDirsInDir(strDir)
 
 Functions included in v2.2.2
 get_keys_from_shelve(file_name, file_location)
