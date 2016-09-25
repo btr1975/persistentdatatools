@@ -9,6 +9,7 @@
 # Collection of tools for IP Address's                   #
 #                                                        #
 ##########################################################
+import logging
 import shelve as __shelve
 import csv as __csv
 import os as __os
@@ -17,26 +18,20 @@ __author__ = 'Benjamin P. Trachtenberg'
 __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
-__version__ = '2.2.2'
+__version__ = '2.2.4'
 __version_info__ = tuple([int(num) for num in __version__.split('.')])
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
 __status__ = "Production"
 
-# Third party libraries
-""" Place third party libraries here """
-# My made libraries
-""" Place your made libraries here """
+LOGGER = logging.getLogger(__name__)
 
-# BEGIN DICTIONARIES
 """ Dictionaries included in v1.0.0
 
 dicName = Explain
 
 """
-# END DICTIONARIES
 
-# BEGIN FUNCTIONS
 """ Functions included in v2.0.0
 list_to_file(orig_list, file_name, file_location)
 file_to_list(file_name, file_location)
@@ -90,7 +85,8 @@ def file_name_increase(file_name, file_location):
         try:
             name, file_extension = file_name.split('.')
             file_name_temp = '%s-%i.%s' % (name, add_one, file_extension)
-        except:
+        except Exception as e:
+            LOGGER.critical('Function file_name_increase Error {error} ignoring any errors'.format(error=e))
             name = file_name
             file_name_temp = '%s-%i' % (name, add_one)
         add_one += 1
@@ -179,7 +175,8 @@ def csv_to_dict(file_name, file_location):
     try:
         csv_read = open(file, "r")
     except Exception as e:
-        print ('Error {error} ignoring any errors'.format(error=e))
+        LOGGER.critical('Function csv_to_dict Error {error} ignoring any errors'.format(error=e))
+        print('Error {error} ignoring any errors'.format(error=e))
         csv_read = open(file, "r", errors='ignore')
     data_row = __csv.DictReader(csv_read, dialect="excel")
     dict_key = 1
@@ -226,12 +223,11 @@ def store_object(file_name, save_key, file_location, object_to_store=None):
     Returns:
 
     """
-    shelve_store = None
     file = __os.path.join(file_location, file_name)
     try:
         shelve_store = __shelve.open(file)
     except Exception as e:
-        print(e)
+        LOGGER.critical('Function store_object Error {error} ignoring any errors'.format(error=e))
         print('Bad storage dB, rebuilding!!')
         __os.remove(file)
         shelve_store = __shelve.open(file)
@@ -255,7 +251,7 @@ def retrieve_object_from_file(file_name, save_key, file_location):
     try:
         shelve_store = __shelve.open(file)
     except Exception as e:
-        print(e)
+        LOGGER.critical('Function retrieve_object_from_file Error {error} ignoring any errors'.format(error=e))
         __sys.exit('Storage dB is not readable, closing App!!')
     stored_object = shelve_store[save_key]
     shelve_store.close()
@@ -402,15 +398,11 @@ def list_directories_in_directory(full_directory_path):
             directories.append(directory_name)
     return directories
 
-# END FUNCTIONS
-
-# BEGIN CLASSES
 """ Classes included in v1.0.0
 
-SomClass
+None
 
 """
-# END CLASSES
 
 if __name__ == "__main__":
     help(__name__)
