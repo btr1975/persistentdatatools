@@ -14,11 +14,12 @@ import shelve as __shelve
 import csv as __csv
 import os as __os
 import sys as __sys
+import re as __re
 __author__ = 'Benjamin P. Trachtenberg'
 __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
-__version__ = '2.2.4'
+__version__ = '2.2.5'
 __version_info__ = tuple([int(num) for num in __version__.split('.')])
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
@@ -52,6 +53,18 @@ list_files_in_directory(full_directory_path)
 
 Functions included in v2.2.2
 get_keys_from_shelve(file_name, file_location)
+
+Update to Functions in v2.2.5
+retrieve_object_from_file
+Uses get to retrieve key now, will not throw exception if it doesn't exist
+
+verify_key_in_shelve
+Uses get to retreive key now, will still return True, or False
+
+Functions included in v2.2.5
+split_string_retain_spaces(string)
+split_strings_in_list_retain_spaces(orig_list)
+join_split_string(split_string)
 
 """
 
@@ -253,7 +266,7 @@ def retrieve_object_from_file(file_name, save_key, file_location):
     except Exception as e:
         LOGGER.critical('Function retrieve_object_from_file Error {error} ignoring any errors'.format(error=e))
         __sys.exit('Storage dB is not readable, closing App!!')
-    stored_object = shelve_store[save_key]
+    stored_object = shelve_store.get(save_key)
     shelve_store.close()
     return stored_object
 
@@ -288,9 +301,13 @@ def verify_key_in_shelve(file_name, save_key, file_location):
     """
     file = __os.path.join(file_location, file_name)
     shelve_store = __shelve.open(file)
-    exists = shelve_store[save_key]
+    exists = shelve_store.get(save_key)
     shelve_store.close()
-    return exists
+    if exists:
+        return True
+
+    elif not exists:
+        return False
 
 
 def get_keys_from_shelve(file_name, file_location):
@@ -397,6 +414,44 @@ def list_directories_in_directory(full_directory_path):
         if __os.path.isdir(__os.path.join(full_directory_path, directory_name)):
             directories.append(directory_name)
     return directories
+
+
+def split_string_retain_spaces(string):
+    """
+    Function to split a string, and retain spaces to rejoin
+    :param string: A String
+    :return:
+        A split sting
+
+    """
+    return __re.split(r'(\s+)', string)
+
+
+def join_split_string(split_string):
+    """
+    Function to join a split string
+    :param split_string: A Split String
+    :return:
+        A joined string
+
+    """
+    return ''.join(split_string)
+
+
+def split_strings_in_list_retain_spaces(orig_list):
+    """
+    Function to split every line in a list, and retain spaces for a rejoin
+    :param orig_list: Original list
+    :return:
+        A List with split lines
+
+    """
+    temp_list = list()
+    for line in orig_list:
+        line_split = __re.split(r'(\s+)', line)
+        temp_list.append(line_split)
+
+    return temp_list
 
 """ Classes included in v1.0.0
 
