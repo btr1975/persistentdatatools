@@ -15,11 +15,13 @@ import csv as __csv
 import os as __os
 import sys as __sys
 import re as __re
+import random as __random
+import string as __string
 __author__ = 'Benjamin P. Trachtenberg'
 __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
-__version__ = '2.2.5'
+__version__ = '2.2.6'
 __version_info__ = tuple([int(num) for num in __version__.split('.')])
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
@@ -27,13 +29,8 @@ __status__ = "Production"
 
 LOGGER = logging.getLogger(__name__)
 
-""" Dictionaries included in v1.0.0
-
-dicName = Explain
-
-"""
-
-""" Functions included in v2.0.0
+""" 
+Functions included in v2.0.0
 list_to_file(orig_list, file_name, file_location)
 file_to_list(file_name, file_location)
 csv_to_dict(file_name, file_location)
@@ -65,6 +62,10 @@ Functions included in v2.2.5
 split_string_retain_spaces(string)
 split_strings_in_list_retain_spaces(orig_list)
 join_split_string(split_string)
+
+Functions included in v2.2.6
+random_line_data(chars_per_line=80)
+random_data(line_count=1, chars_per_line=80)
 
 """
 
@@ -453,11 +454,40 @@ def split_strings_in_list_retain_spaces(orig_list):
 
     return temp_list
 
-""" Classes included in v1.0.0
 
-None
+def random_line_data(chars_per_line=80):
+    """
+    Function to create a line of a random string
+    Args:
+        chars_per_line: An integer that says how many characters to return
 
-"""
+    Returns:
+        A String
+
+    """
+    return ''.join(__random.choice(__string.ascii_letters) for x in range(chars_per_line))
+
+
+def random_data(line_count=1, chars_per_line=80):
+    """
+    Function to creates lines of random string data
+    Args:
+        line_count: An integer that says how many lines to return
+        chars_per_line: An integer that says how many characters per line to return
+
+    Returns:
+        A String
+
+    """
+    divide_lines = chars_per_line * line_count
+    return '\n'.join(random_line_data(chars_per_line) for x in range(int(divide_lines / chars_per_line)))
+
 
 if __name__ == "__main__":
+    print("This module was not made to be used as stand alone!!")
     help(__name__)
+
+else:
+    if __sys.version_info < (3, 5, 2):
+        LOGGER.critical('{mod_name} needs Python version 3.5.2 or above!'.format(mod_name=__name__))
+        raise SyntaxError('{mod_name} needs Python version 3.5.2 or above!'.format(mod_name=__name__))
