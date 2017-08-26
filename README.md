@@ -1,14 +1,16 @@
-# persistentdatatools
+# Python Script: persistentdatatools
 
-## Written By: Benjamin P. Trachtenberg 
+### Written By: Benjamin P. Trachtenberg 
+### If you have any questions e-mail me
 
 ### Contact Information: e_ben_75-python@yahoo.com
 
 ### LinkedIn: [Ben Trachtenberg](https://www.linkedin.com/in/ben-trachtenberg-3a78496)
+### Docker Hub: [Docker Hub](https://hub.docker.com/r/btr1975)
 
 ### Requirements
 
-* Nothing Specific
+* Nothing Specific besides Python 3
 
 ### Languages
 
@@ -16,24 +18,41 @@
 
 ### About
 
-This is a library used to manipulate, and save data quickly.
+This is a library used to manipulate, and save data quickly.  It is just a bunch of shortcuts I use quite a bit to manipulate saved data.
 
-### Features
+### Functions included in v2.0.0
+* list_to_file(orig_list, file_name, file_location)
+* file_to_list(file_name, file_location)
+* csv_to_dict(file_name, file_location)
+* store_object(file_name, save_key, file_location, object_to_store=None)
+* retrieve_object_from_file(file_name, save_key, file_location)
+* delete_object_from_file(file_name, save_key, file_location)
+* verify_key_in_shelve(file_name, save_key, file_location)
+* remove_spaces(string_item)
+* remove_spaces_add_hyphen(string_item)
+* remove_extra_spaces(string_item)
+* verify_file_exists(file_name, file_location)
+* verify_directory(directory_name, directory_location, directory_create=False)
+* file_name_increase(file_name, file_location)
+* dict_to_csv(orig_dict, file_name, field_names_tuple, file_location)
+* remove_symbol_add_symbol(string_item, remove_symbol, add_symbol)
+* list_files_in_directory(full_directory_path)
 
-1. Output a list to a file
-2. Input a file to a list
-3. Input a csv to a dictionary
-4. Save an object to a shelve
-5. Get an object from a shelve
-6. Delete an object in a shelve
-7. Verify a key ion a shelve
-8. Remove all spaces from a string
-9. Remove all spaces, and add hyphen instead
-10. Remove all extra spaces
-11. Verify if a file exists
-12. Verify if a directory exists, option to create it if it does not
-13. File name increaser
-14. Output a dictionary to a csv
-15. Remove a symbol in a string, and replace it with something
-16. Get a list of files in a directory
-17. Get all keys from a shelve
+### Functions added in v2.2.2
+* get_keys_from_shelve(file_name, file_location)
+
+### Update to Functions in v2.2.5
+* retrieve_object_from_file: 
+Uses get to retrieve key now, will not throw exception if it doesn't exist
+
+* verify_key_in_shelve: 
+Uses get to retreive key now, will still return True, or False
+
+### Functions added in v2.2.5
+* split_string_retain_spaces(string)
+* split_strings_in_list_retain_spaces(orig_list)
+* join_split_string(split_string)
+
+### Functions added in v2.2.6
+* random_line_data(chars_per_line=80)
+* random_data(line_count=1, chars_per_line=80)
