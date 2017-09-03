@@ -1,5 +1,6 @@
-from persistentdatatools import remove_spaces, remove_spaces_add_hyphen, remove_extra_spaces,  \
-    remove_symbol_add_symbol, split_string_retain_spaces, join_split_string, split_strings_in_list_retain_spaces
+from persistentdatatools.persistentdatatools import remove_spaces, remove_spaces_add_hyphen, remove_extra_spaces,  \
+                                                    remove_symbol_add_symbol, split_string_retain_spaces, \
+                                                    join_split_string, split_strings_in_list_retain_spaces
 
 # test with pytest
 
