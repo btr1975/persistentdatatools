@@ -2,8 +2,6 @@ from persistentdatatools.persistentdatatools import remove_spaces, remove_spaces
                                                     remove_symbol_add_symbol, split_string_retain_spaces, \
                                                     join_split_string, split_strings_in_list_retain_spaces
 
-# test with pytest
-
 
 def test_remove_spaces():
     assert remove_spaces('a b   c d  e       f') == 'abcdef'
