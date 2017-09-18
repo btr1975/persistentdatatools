@@ -12,7 +12,7 @@ tests_require = [
 setup(
     name='persistentdatatools',
     version=__version__,
-    python_requires='~=3.5',
+    python_requires='~=3.3',
     description='This is a library used to manipulate, and save data quickly.',
     keywords='persistence data manipulation save easy shortcuts',
     url='https://github.com/btr1975/persistentdatatools',
