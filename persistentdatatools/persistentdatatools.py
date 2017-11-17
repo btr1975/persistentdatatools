@@ -17,12 +17,13 @@ import sys as __sys
 import re as __re
 import random as __random
 import string as __string
+import zipfile as __zipfile
 __author__ = 'Benjamin P. Trachtenberg'
 __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
 __status__ = 'prod'
-__version_info__ = (2, 2, 8)
+__version_info__ = (2, 2, 9)
 __version__ = '.'.join(map(str, __version_info__))
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
@@ -66,6 +67,9 @@ join_split_string(split_string)
 Functions included in v2.2.6
 random_line_data(chars_per_line=80)
 random_data(line_count=1, chars_per_line=80)
+
+Functions included in v2.2.9
+collect_and_zip_files(dir_list, output_dir, zip_file_name, file_extension_list=None, file_name_list=None)
 
 """
 
@@ -481,3 +485,85 @@ def random_data(line_count=1, chars_per_line=80):
     """
     divide_lines = chars_per_line * line_count
     return '\n'.join(random_line_data(chars_per_line) for x in range(int(divide_lines / chars_per_line)))
+
+
+def collect_and_zip_files(dir_list, output_dir, zip_file_name, file_extension_list=None, file_name_list=None):
+    """
+    Function to collect files and make a zip file
+    :param dir_list: A list of directories
+    :param output_dir: The output directory
+    :param zip_file_name: Zip file name
+    :param file_extension_list: A list of extensions of files to find
+    :param file_name_list: A list of file names to find
+    :return:
+        Outputs a zip file
+
+    Note: If no file_extension_list and file_name_list are provided it will zip the entire directory.
+
+    """
+    temp_list = list()
+
+    if isinstance(dir_list, list):
+        for dir_name in dir_list:
+            if not __os.path.isdir(dir_name):
+                error = 'Function collect_and_zip_files received an item that is not a directory {}'.format(dir_name)
+                LOGGER.critical(error)
+                raise Exception(error)
+
+    else:
+        error = 'Function collect_and_zip_files expected dir_list to be a list but received a {}'.format(type(dir_list))
+        LOGGER.critical(error)
+        raise TypeError(error)
+
+    if not file_extension_list and not file_name_list:
+        for dir_name in dir_list:
+            temp_files_list = list_files_in_directory(dir_name)
+            for file_name in temp_files_list:
+                temp_list.append(__os.path.join(dir_name, file_name))
+
+    if file_extension_list:
+        if isinstance(file_extension_list, list):
+            for dir_name in dir_list:
+                temp_files_list = list_files_in_directory(dir_name)
+                for file_name in temp_files_list:
+                    garbage, extension = file_name.split('.')
+                    if extension in file_extension_list:
+                        temp_list.append(__os.path.join(dir_name, file_name))
+
+        else:
+            error = 'Function collect_and_zip_files expected file_extension_list to be a ' \
+                    'list but received a {}'.format(type(file_extension_list))
+            LOGGER.critical(error)
+            raise TypeError(error)
+
+    if file_name_list:
+        if isinstance(file_name_list, list):
+            for dir_name in dir_list:
+                temp_files_list = list_files_in_directory(dir_name)
+                for file_name in temp_files_list:
+                    if file_name in file_name_list:
+                        temp_list.append(__os.path.join(dir_name, file_name))
+
+        else:
+            error = 'Function collect_and_zip_files expected file_name_list to be a list but ' \
+                    'received a {}'.format(type(file_name_list))
+            LOGGER.critical(error)
+            raise TypeError(error)
+
+    if len(zip_file_name.split('.')) == 2:
+        name, ext = zip_file_name.split('.')
+        if ext != 'zip':
+            LOGGER.warning('Changed the extension of zip_file_name={} to be zip'.format(zip_file_name))
+            zip_file_name = '{}.{}'.format(name, 'zip')
+
+    else:
+        error = 'Function collect_and_zip_files expected zip_file_name to only contain one . ' \
+                'but received {}'.format(zip_file_name)
+        LOGGER.critical(error)
+        raise NameError(error)
+
+    with __zipfile.ZipFile(__os.path.join(output_dir, zip_file_name), 'a') as the_zip_file:
+        for file in temp_list:
+            the_zip_file.write(file)
+
+    the_zip_file.close()
