@@ -1,6 +1,9 @@
-from persistentdatatools.persistentdatatools import remove_spaces, remove_spaces_add_hyphen, remove_extra_spaces,  \
-                                                    remove_symbol_add_symbol, split_string_retain_spaces, \
-                                                    join_split_string, split_strings_in_list_retain_spaces
+import os
+import sys
+base_path = os.path.join(os.path.abspath(os.path.dirname(__name__)))
+sys.path.append(os.path.join(base_path, 'persistentdatatools'))
+from persistentdatatools import remove_spaces, remove_spaces_add_hyphen, remove_extra_spaces, \
+    remove_symbol_add_symbol, split_string_retain_spaces, join_split_string, split_strings_in_list_retain_spaces
 
 
 def test_remove_spaces():

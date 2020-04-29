@@ -23,65 +23,25 @@ __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
 __status__ = 'prod'
-__version_info__ = (2, 2, 9)
+__version_info__ = (2020, 4, 28, 1)
 __version__ = '.'.join(map(str, __version_info__))
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
 
 LOGGER = logging.getLogger(__name__)
 
-""" 
-Functions included in v2.0.0
-list_to_file(orig_list, file_name, file_location)
-file_to_list(file_name, file_location)
-csv_to_dict(file_name, file_location)
-store_object(file_name, save_key, file_location, object_to_store=None)
-retrieve_object_from_file(file_name, save_key, file_location)
-delete_object_from_file(file_name, save_key, file_location)
-verify_key_in_shelve(file_name, save_key, file_location)
-remove_spaces(string_item)
-remove_spaces_add_hyphen(string_item)
-remove_extra_spaces(string_item)
-verify_file_exists(file_name, file_location)
-verify_directory(directory_name, directory_location, directory_create=False)
-file_name_increase(file_name, file_location)
-dict_to_csv(orig_dict, file_name, field_names_tuple, file_location)
-remove_symbol_add_symbol(string_item, remove_symbol, add_symbol)
-list_files_in_directory(full_directory_path)
-
-Functions included in v2.2.2
-get_keys_from_shelve(file_name, file_location)
-
-Update to Functions in v2.2.5
-retrieve_object_from_file
-Uses get to retrieve key now, will not throw exception if it doesn't exist
-
-verify_key_in_shelve
-Uses get to retreive key now, will still return True, or False
-
-Functions included in v2.2.5
-split_string_retain_spaces(string)
-split_strings_in_list_retain_spaces(orig_list)
-join_split_string(split_string)
-
-Functions included in v2.2.6
-random_line_data(chars_per_line=80)
-random_data(line_count=1, chars_per_line=80)
-
-Functions included in v2.2.9
-collect_and_zip_files(dir_list, output_dir, zip_file_name, file_extension_list=None, file_name_list=None)
-
-"""
-
 
 def verify_file_exists(file_name, file_location):
     """
     Function to verify if a file exists
-    Args:
-        file_name: The name of file to check
-        file_location: The location of the file, derive from the os module
 
-    Returns: returns boolean True or False
+    :type file_name: String
+    :param file_name: The name of file to check
+    :type file_location: String
+    :param file_location: The location of the file, derive from the os module
+
+    :rtype: Boolean
+    :return: returns boolean True or False
 
     """
     return __os.path.isfile(__os.path.join(file_location, file_name))
@@ -90,11 +50,16 @@ def verify_file_exists(file_name, file_location):
 def file_name_increase(file_name, file_location):
     """
     Function to increase a filename by a number 1
-    Args:
-        file_name: The name of file to check
-        file_location: The location of the file, derive from the os module
 
-    Returns: returns a good filename.
+    :type file_name: String
+    :param file_name: The name of file to check
+    :type file_location: String
+    :param file_location: The location of the file, derive from the os module
+
+    :rtype: String
+    :return: a good filename.
+
+    :raises Exception: If any errors happen
 
     """
     add_one = 1
@@ -115,12 +80,16 @@ def file_name_increase(file_name, file_location):
 def verify_directory(directory_name, directory_location, directory_create=False):
     """
     Function to verify if a directory exists
-    Args:
-        directory_name: The name of directory to check
-        directory_location: The location of the directory, derive from the os module
-        directory_create: If you want to create the directory
 
-    Returns: returns boolean True or False, but if you set directory_create to True it will create the directory
+    :type directory_name: String
+    :param directory_name: The name of directory to check
+    :type directory_location: String
+    :param directory_location: The location of the directory, derive from the os module
+    :type directory_create: Boolean
+    :param directory_create: If you want to create the directory
+
+    :rtype: Boolean
+    :return: Boolean True or False, but if you set directory_create to True it will create the directory
 
     """
     if not directory_create:
@@ -134,12 +103,16 @@ def verify_directory(directory_name, directory_location, directory_create=False)
 def list_to_file(orig_list, file_name, file_location):
     """
     Function to export a list to a text file
-    Args:
-        orig_list: The list you want exported
-        file_name: The name of the exported file
-        file_location: The location of the file, derive from the os module
 
-    Returns: returns the filename info
+    :type orig_list: List
+    :param orig_list: The list you want exported
+    :type file_name: String
+    :param file_name: The name of the exported file
+    :type file_location: String
+    :param file_location: The location of the file, derive from the os module
+
+    :rtype: String
+    :return: Filename info
 
     """
     file = __os.path.join(file_location, file_name)
@@ -147,10 +120,10 @@ def list_to_file(orig_list, file_name, file_location):
     def add_line_break(list_line):
         """
         Create a line break at the end of a string
-        Args:
-            list_line: string
+        :param list_line: string
 
-        Returns: A string with a line break
+        :return:
+            A string with a line break
 
         """
         list_line = ('%s\n' % (list_line,))
@@ -165,11 +138,14 @@ def list_to_file(orig_list, file_name, file_location):
 def file_to_list(file_name, file_location):
     """
     Function to import a text file to a list
-    Args:
-        file_name: The name of file to be import
-        file_location: The location of the file, derive from the os module
 
-    Returns: returns a list
+    :type file_name: String
+    :param file_name: The name of file to be import
+    :type file_location: String
+    :param file_location: The location of the file, derive from the os module
+
+    :rtype: List
+    :return: A list created from file data
 
     """
     file = __os.path.join(file_location, file_name)
@@ -182,11 +158,14 @@ def file_to_list(file_name, file_location):
 def csv_to_dict(file_name, file_location):
     """
     Function to import a csv as a dictionary
-    Args:
-        file_name: The name of the csv file
-        file_location: The location of the file, derive from the os module
 
-    Returns: returns a dictionary
+    :type file_name: String
+    :param file_name: The name of file to be import
+    :type file_location: String
+    :param file_location: The location of the file, derive from the os module
+
+    :rtype: Dict
+    :return: A dictionary
 
     """
     file = __os.path.join(file_location, file_name)
@@ -209,13 +188,18 @@ def csv_to_dict(file_name, file_location):
 def dict_to_csv(orig_dict, file_name, field_names_tuple, file_location):
     """
     Function to export a dictionary to a csv file
-    Args:
-        orig_dict: The dictionary you want exported
-        file_name: The name of the exported file
-        field_names_tuple: The fieldnames in a tuple
-        file_location: The location of the file, derive from the os module
 
-    Returns: returns the filename info
+    :type orig_dict: Dict
+    :param orig_dict: The dictionary you want exported
+    :type file_name: String
+    :param file_name: The name of the exported file
+    :type field_names_tuple: Tuple
+    :param field_names_tuple: The fieldnames in a tuple
+    :type file_location: String
+    :param file_location: The location of the file, derive from the os module
+
+    :rtype: String
+    :return: Filename info
 
     """
     file = __os.path.join(file_location, file_name)
@@ -229,119 +213,15 @@ def dict_to_csv(orig_dict, file_name, field_names_tuple, file_location):
     return file_name
 
 
-def store_object(file_name, save_key, file_location, object_to_store=None):
-    """
-    Function to store objects in a shelve
-    Args:
-        file_name: Shelve storage file name
-        save_key: The name of the key to store the item to
-        file_location: The location of the file, derive from the os module
-        object_to_store: The object you want to store
-
-    Returns:
-
-    """
-    file = __os.path.join(file_location, file_name)
-    try:
-        shelve_store = __shelve.open(file)
-    except Exception as e:
-        LOGGER.critical('Function store_object Error {error} ignoring any errors'.format(error=e))
-        print('Bad storage dB, rebuilding!!')
-        __os.remove(file)
-        shelve_store = __shelve.open(file)
-    shelve_store[save_key] = object_to_store
-    shelve_store.close()
-
-
-def retrieve_object_from_file(file_name, save_key, file_location):
-    """
-    Function to retrieve objects from a shelve
-    Args:
-        file_name: Shelve storage file name
-        save_key: The name of the key the item is stored in
-        file_location: The location of the file, derive from the os module
-
-    Returns: Returns the stored object
-
-    """
-    shelve_store = None
-    file = __os.path.join(file_location, file_name)
-    try:
-        shelve_store = __shelve.open(file)
-    except Exception as e:
-        LOGGER.critical('Function retrieve_object_from_file Error {error} ignoring any errors'.format(error=e))
-        __sys.exit('Storage dB is not readable, closing App!!')
-    stored_object = shelve_store.get(save_key)
-    shelve_store.close()
-    return stored_object
-
-
-def delete_object_from_file(file_name, save_key, file_location):
-    """
-    Function to delete objects from a shelve
-    Args:
-        file_name: Shelve storage file name
-        save_key: The name of the key the item is stored in
-        file_location: The location of the file, derive from the os module
-
-    Returns:
-
-    """
-    file = __os.path.join(file_location, file_name)
-    shelve_store = __shelve.open(file)
-    del shelve_store[save_key]
-    shelve_store.close()
-
-
-def verify_key_in_shelve(file_name, save_key, file_location):
-    """
-    Function to check for a key in a shelve
-    Args:
-        file_name: Shelve storage file name
-        save_key: The name of the key the item is stored in
-        file_location: The location of the file, derive from the os module
-
-    Returns: returns true or false
-
-    """
-    file = __os.path.join(file_location, file_name)
-    shelve_store = __shelve.open(file)
-    exists = shelve_store.get(save_key)
-    shelve_store.close()
-    if exists:
-        return True
-
-    elif not exists:
-        return False
-
-
-def get_keys_from_shelve(file_name, file_location):
-    """
-    Function to retreive all keys in a shelve
-    Args:
-        file_name: Shelve storage file name
-        file_location: The location of the file, derive from the os module
-
-    Returns:
-        a list of the keys
-
-    """
-    temp_list = list()
-    file = __os.path.join(file_location, file_name)
-    shelve_store = __shelve.open(file)
-    for key in shelve_store:
-        temp_list.append(key)
-    shelve_store.close()
-    return temp_list
-
-
 def remove_spaces(string_item):
     """
     Remove all spaces from a string
-    Args:
-        string_item: String that you want to remove spaces from
 
-    Returns: returns a string without any spaces
+    :type string_item: String
+    :param string_item: String that you want to remove spaces from
+
+    :rtype: String
+    :return: Corrected string without any spaces
 
     """
     string_item = ''.join(string_item.split())
@@ -351,10 +231,12 @@ def remove_spaces(string_item):
 def remove_spaces_add_hyphen(string_item):
     """
     Remove all spaces from a string and replace them with a hyphen
-    Args:
-        string_item: String that you want to remove spaces from
 
-    Returns: returns a string with spaces replaced with a hyphen
+    :type string_item: String
+    :param string_item: String that you want to remove hyphens from
+
+    :rtype: String
+    :return: Corrected string without any hyphens
 
     """
     string_item = '-'.join(string_item.split())
@@ -364,10 +246,12 @@ def remove_spaces_add_hyphen(string_item):
 def remove_extra_spaces(string_item):
     """
     Remove all extra spaces from a string leaving single spaces
-    Args:
-        string_item: String that you want to remove spaces from
 
-    Returns: returns a string with single spacing
+    :type string_item: String
+    :param string_item: String that you want to remove spaces from
+
+    :rtype: String
+    :return: Corrected string without any extra spaces
 
     """
     string_item = ' '.join(string_item.split())
@@ -377,12 +261,16 @@ def remove_extra_spaces(string_item):
 def remove_symbol_add_symbol(string_item, remove_symbol, add_symbol):
     """
     Remove a symbol from a string, and replace it with a different one
-    Args:
-        string_item: String that you want to replace symbols in
-        remove_symbol: Symbol to remove
-        add_symbol: Symbol to add
 
-    Returns: returns a string with symbols swapped
+    :type string_item: String
+    :param string_item: String that you want to replace symbols in
+    :type remove_symbol: String
+    :param remove_symbol: Symbol to remove
+    :type add_symbol: String
+    :param add_symbol: Symbol to add
+
+    :rtype: String
+    :return: Corrected string with symbols swapped
 
     """
     string_item = add_symbol.join(string_item.split(remove_symbol))
@@ -392,10 +280,12 @@ def remove_symbol_add_symbol(string_item, remove_symbol, add_symbol):
 def list_files_in_directory(full_directory_path):
     """
     List the files in a specified directory
-    Args:
-        full_directory_path: The full directory path to check, derive from the os module
 
-    Returns: returns a list of files
+    :type full_directory_path: String
+    :param full_directory_path: The full directory path to check, derive from the os module
+
+    :rtype: List
+    :return: A list of files
 
     """
     files = list()
@@ -408,10 +298,12 @@ def list_files_in_directory(full_directory_path):
 def list_directories_in_directory(full_directory_path):
     """
     List the directories in a specified directory
-    Args:
-        full_directory_path: The full directory path to check, derive from the os module
 
-    Returns: returns a list of directories
+    :type full_directory_path: String
+    :param full_directory_path: The full directory path to check, derive from the os module
+
+    :rtype: List
+    :return: A list of directories
 
     """
     directories = list()
@@ -424,9 +316,12 @@ def list_directories_in_directory(full_directory_path):
 def split_string_retain_spaces(string):
     """
     Function to split a string, and retain spaces to rejoin
+
+    :type string: String
     :param string: A String
-    :return:
-        A split sting
+
+    :rtype: List
+    :return: A split string
 
     """
     return __re.split(r'(\s+)', string)
@@ -435,9 +330,12 @@ def split_string_retain_spaces(string):
 def join_split_string(split_string):
     """
     Function to join a split string
+
+    :type split_string: List
     :param split_string: A Split String
-    :return:
-        A joined string
+
+    :rtype: String
+    :return: A joined string
 
     """
     return ''.join(split_string)
@@ -446,9 +344,12 @@ def join_split_string(split_string):
 def split_strings_in_list_retain_spaces(orig_list):
     """
     Function to split every line in a list, and retain spaces for a rejoin
+
+    :type orig_list: List
     :param orig_list: Original list
-    :return:
-        A List with split lines
+
+    :rtype: List
+    :return: A List with split lines
 
     """
     temp_list = list()
@@ -462,11 +363,12 @@ def split_strings_in_list_retain_spaces(orig_list):
 def random_line_data(chars_per_line=80):
     """
     Function to create a line of a random string
-    Args:
-        chars_per_line: An integer that says how many characters to return
 
-    Returns:
-        A String
+    :type chars_per_line: Integer
+    :param chars_per_line: An integer that says how many characters to return
+
+    :rtype: String
+    :return: A String
 
     """
     return ''.join(__random.choice(__string.ascii_letters) for x in range(chars_per_line))
@@ -475,12 +377,14 @@ def random_line_data(chars_per_line=80):
 def random_data(line_count=1, chars_per_line=80):
     """
     Function to creates lines of random string data
-    Args:
-        line_count: An integer that says how many lines to return
-        chars_per_line: An integer that says how many characters per line to return
 
-    Returns:
-        A String
+    :type line_count: Integer
+    :param line_count: An integer that says how many lines to return
+    :type chars_per_line: Integer
+    :param chars_per_line: An integer that says how many characters per line to return
+
+    :rtype: String
+    :return: A String
 
     """
     divide_lines = chars_per_line * line_count
@@ -490,13 +394,20 @@ def random_data(line_count=1, chars_per_line=80):
 def collect_and_zip_files(dir_list, output_dir, zip_file_name, file_extension_list=None, file_name_list=None):
     """
     Function to collect files and make a zip file
+
+    :type dir_list: List
     :param dir_list: A list of directories
+    :type output_dir: String
     :param output_dir: The output directory
+    :type zip_file_name: String
     :param zip_file_name: Zip file name
+    :type file_extension_list: List
     :param file_extension_list: A list of extensions of files to find
+    :type file_name_list: List
     :param file_name_list: A list of file names to find
-    :return:
-        Outputs a zip file
+
+    :rtype: None
+    :return: None Outputs a zip file
 
     Note: If no file_extension_list and file_name_list are provided it will zip the entire directory.
 
