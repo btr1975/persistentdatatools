@@ -6,4 +6,4 @@ directory=tests/reports/coverage
 
 [report]
 include =
-    ipaddresstools/*
+    persistentdatatools/*
