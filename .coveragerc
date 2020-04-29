@@ -1,0 +1,9 @@
+[run]
+command_line= -m pytest
+
+[html]
+directory=tests/reports/coverage
+
+[report]
+include =
+    ipaddresstools/*
