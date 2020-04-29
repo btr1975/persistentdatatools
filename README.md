@@ -1,4 +1,6 @@
 # Python Script: persistentdatatools
+### Current Version: 2020.4.28.1
+### [Documentation](https://persistentdatatools.readthedocs.io/)
 
 ### Written By: Benjamin P. Trachtenberg 
 ### If you have any questions e-mail me

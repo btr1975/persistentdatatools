@@ -15,7 +15,7 @@ setup(
     python_requires='~=3.3',
     description='This is a library used to manipulate, and save data quickly.',
     keywords='persistence data manipulation save easy shortcuts',
-    url='https://github.com/btr1975/persistentdatatools',
+    url='https://persistentdatatools.readthedocs.io',
     author='Benjamin P. Trachtenberg',
     author_email='e_ben_75-python@yahoo.com',
     license='MIT',
