@@ -3,7 +3,7 @@ import os
 from persistentdatatools.persistentdatatools import __version__
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(base_dir, 'README.md'), encoding='utf-8') as f:
+with open(os.path.join(base_dir, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 packages = [
@@ -20,7 +20,7 @@ setup(
     python_requires='~=3.3',
     description='This is a library used to manipulate, and save data quickly.',
     long_description=long_description,
-    long_description_content_type='text/markdown',
+    long_description_content_type='text/restructuredtext',
     keywords='persistence data manipulation save easy shortcuts',
     url='https://persistentdatatools.readthedocs.io',
     author='Benjamin P. Trachtenberg',
