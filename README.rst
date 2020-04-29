@@ -1,7 +1,7 @@
 Python Script: persistentdatatools
 ==================================
 
-Current Version: 2020.4.28.1
+Current Version: 2020.4.29.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Documentation <https://persistentdatatools.readthedocs.io/>`__
