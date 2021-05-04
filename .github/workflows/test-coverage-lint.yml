@@ -46,4 +46,4 @@ jobs:
         coverage report
     - name: Lint with pylint
       run: |
-        pylint --disable=C0301,W0703,W1202,R1705,R1710 ./persistentdatatools/persistentdatatools.py
+        pylint --disable=C0301,W0703,W1202,R1705,R1710,C0103,R1732,W0612,R0914,R0912 ./persistentdatatools/persistentdatatools.py

@@ -1,3 +1,5 @@
+[![Unit-Testing, Coverage, Linting](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml/badge.svg)](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml)
+
 # Python Script: persistentdatatools
 
 ### [Documentation](https://persistentdatatools.readthedocs.io/)
