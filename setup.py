@@ -3,8 +3,12 @@ import os
 from persistentdatatools.persistentdatatools import __version__
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(base_dir, 'README.rst'), encoding='utf-8') as f:
+with open(os.path.join(base_dir, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
+
+about = {}
+with open(os.path.join(base_dir, 'persistentdatatools', 'version.py'), 'r', encoding='utf-8') as f:
+    exec(f.read(), about)
 
 packages = [
     'persistentdatatools'
@@ -17,10 +21,10 @@ tests_require = [
 setup(
     name='persistentdatatools',
     version=__version__,
-    python_requires='>=3.3',
+    python_requires='>=3.6',
     description='This is a library used to manipulate, and save data quickly.',
     long_description=long_description,
-    long_description_content_type='text/restructuredtext',
+    long_description_content_type='text/markdown',
     keywords='persistence data manipulation save easy shortcuts',
     url='https://persistentdatatools.readthedocs.io',
     project_urls={

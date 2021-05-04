@@ -1,32 +1,20 @@
 #!/usr/bin/env python3
-##########################################################
-# Script Name: persistentdatatools.py                    #
-# Script Type: Python                                    #
-# Updated By: Benjamin P. Trachtenberg                   #
-# Date Written 9/17/2015                                 #
-#                                                        #
-# Description:                                           #
-# Collection of tools for IP Address's                   #
-#                                                        #
-##########################################################
+"""
+
+Updated By: Benjamin P. Trachtenberg
+Date Written 9/17/2015
+
+Description:
+Some quick tools to make persistent data quicker
+
+"""
 import logging
-import shelve as __shelve
 import csv as __csv
 import os as __os
-import sys as __sys
 import re as __re
 import random as __random
 import string as __string
 import zipfile as __zipfile
-__author__ = 'Benjamin P. Trachtenberg'
-__copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
-__credits__ = None
-__license__ = 'The MIT License (MIT)'
-__status__ = 'prod'
-__version_info__ = (2, 2, 10)
-__version__ = '.'.join(map(str, __version_info__))
-__maintainer__ = 'Benjamin P. Trachtenberg'
-__email__ = 'e_ben_75-python@yahoo.com'
 
 LOGGER = logging.getLogger(__name__)
 

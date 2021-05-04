@@ -14,7 +14,9 @@ import os
 import sys
 base_path = os.path.split(os.path.join(os.path.abspath(os.path.dirname(__name__))))[0]
 sys.path.append(base_path)
-from persistentdatatools.persistentdatatools import __version__ as version
+about = {}
+with open(os.path.join(base_path, 'persistentdatatools', 'version.py'), 'r', encoding='utf-8') as f:
+    exec(f.read(), about)
 
 
 # -- Added for readthedocs.org -----------------------------------------------
@@ -25,11 +27,11 @@ master_doc = 'index'
 # -- Project information -----------------------------------------------------
 
 # The full version, including alpha/beta/rc tags
-release = version
+release = about['__version__']
 
-project = 'persistentdatatools Version: {}'.format(release)
-copyright = '2020, Benjamin P. Trachtenberg'
-author = 'Benjamin P. Trachtenberg'
+project = f'{about["__title__"]} v{release}'
+copyright = about['__copyright__']
+author = about['__author__']
 
 # -- General configuration ---------------------------------------------------
 
@@ -58,7 +60,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'alabaster'
 if html_theme == 'alabaster':
     html_theme_options = {
-        'description': 'ipaddresstools',
+        'description': 'persistentdatatools',
         'page_width': '95%',
         'body_max_width': 'auto',
         'fixed_sidebar': 'true',
