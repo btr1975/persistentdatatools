@@ -1,6 +1,5 @@
 from setuptools import setup
 import os
-from persistentdatatools.persistentdatatools import __version__
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(base_dir, 'README.md'), encoding='utf-8') as f:
@@ -19,22 +18,22 @@ tests_require = [
 ]
 
 setup(
-    name='persistentdatatools',
-    version=__version__,
+    name=about['__title__'],
+    version=about['__version__'],
     python_requires='>=3.6',
-    description='This is a library used to manipulate, and save data quickly.',
+    description=about['__description__'],
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords='persistence data manipulation save easy shortcuts',
-    url='https://persistentdatatools.readthedocs.io',
+    url=about['__url__'],
     project_urls={
         'Documentation': 'https://persistentdatatools.readthedocs.io/en/latest/',
         'Source': 'https://github.com/btr1975/persistentdatatools',
         'Tracker': 'https://github.com/btr1975/persistentdatatools/issues',
     },
-    author='Benjamin P. Trachtenberg',
-    author_email='e_ben_75-python@yahoo.com',
-    license='MIT',
+    author=about['__author__'],
+    author_email=about['__email__'],
+    license=['__license__'],
     packages=packages,
     include_package_data=True,
     test_suite='pytest',
@@ -51,9 +50,9 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
 )
