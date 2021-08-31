@@ -33,7 +33,7 @@ setup(
     },
     author=about['__author__'],
     author_email=about['__email__'],
-    license=['__license__'],
+    license=about['__license__'],
     packages=packages,
     include_package_data=True,
     test_suite='pytest',

@@ -1,4 +1,10 @@
-[![Unit-Testing, Coverage, Linting](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml/badge.svg)](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml)
+| BRANCH | STATUS |
+|---|---|
+| master | [![Unit-Testing, Coverage, Linting](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml/badge.svg?branch=master)](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml) |
+| develop | [![Unit-Testing, Coverage, Linting](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml/badge.svg?branch=develop)](https://github.com/btr1975/persistentdatatools/actions/workflows/test-coverage-lint.yml) |
+
+[![Downloads](https://pepy.tech/badge/persistentdatatools)](https://pepy.tech/project/persistentdatatools)
+[![Supported Versions](https://img.shields.io/pypi/pyversions/persistentdatatools.svg)](https://pypi.org/project/persistentdatatools)
 
 # Python Script: persistentdatatools
 
